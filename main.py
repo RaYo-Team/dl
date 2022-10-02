@@ -26,7 +26,7 @@ async def start(client, message):
          [
             [
                InlineKeyboardButton("❕ ┇ كيفيه استخدام البوت", url=f"https://t.me/SeroBots/3251"),
-               InlineKeyboardButton("Serø ⁞ Bots Service", url=f"https://t.me/SeroBots"),
+               InlineKeyboardButton("", url=f"https://t.me/SeroBots"),
             ]
          ]
       )
@@ -84,7 +84,7 @@ async def AudioDownLoad(client, callback_query):
    except Exception as e:
       await client.send_message(chat_id=Sudo_id,text=e)
       return await callback_query.edit_message_text(e)
-   await callback_query.edit_message_text("🚀 يتم الرفع علي خوادم تلكرام ع")
+   await callback_query.edit_message_text("🚀 يتم الرفع علي خوادم تلكرام ")
    await client.send_audio(
       callback_query.message.chat.id,
       audio=audio_file,
@@ -108,7 +108,7 @@ async def search(client, message):
             await message.reply_text("استخدم الامر هكذا ( بحث + الكلمه )")
             return
 
-        m = await message.reply_text("انتضر قليلا 🚨")
+        m = await message.reply_text("يتم البحث عن ( {message.text} )")
         results = YoutubeSearch(query, max_results=5).to_dict()
         i = 0
         text = ""
