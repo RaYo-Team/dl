@@ -49,17 +49,17 @@ async def ytdl(client, message):
 
 @app.on_callback_query(ay.regex("video"))
 async def VideoDownLoad(client, callback_query):
-   await callback_query.edit_message_text("🎚 ┇ يتم قياس حجم التحميل")
+   await callback_query.edit_message_text("*🎚 ┇ يتم قياس حجم التحميل*"),parse_mode=>markdown
    try:
       url = callback_query.message.text.split(' : ',1)[1]
       with YoutubeDL(video) as ytdl:
-         await callback_query.edit_message_text("♻️┇جاري التحميل...")
+         await callback_query.edit_message_text("*♻️┇جاري التحميل...*"),parse_mode=>markdown
          ytdl_data = ytdl.extract_info(url, download=True)
          video_file = ytdl.prepare_filename(ytdl_data)
    except Exception as e:
       await client.send_message(chat_id=Sudo_id,text=e)
       return await callback_query.edit_message_text(e)
-   await callback_query.edit_message_text("🚀 يتم الرفع علي خوادم تلكرام ")
+   await callback_query.edit_message_text("*🚀 يتم الرفع علي خوادم تلكرام *"),parse_mode=>markdown
    await client.send_video(
             callback_query.message.chat.id,
             video=video_file,
@@ -73,18 +73,18 @@ async def VideoDownLoad(client, callback_query):
 
 @app.on_callback_query(ay.regex("audio"))
 async def AudioDownLoad(client, callback_query):
-   await callback_query.edit_message_text("🎚 ┇ يتم قياس حجم التحميل")
+   await callback_query.edit_message_text("*🎚 ┇ يتم قياس حجم التحميل*"),parse_mode=>markdown
    try:
       url = callback_query.message.text.split(' : ',1)[1]
       with YoutubeDL(audio) as ytdl:
-         await callback_query.edit_message_text("♻️┇جاري التحميل...")
+         await callback_query.edit_message_text("*♻️┇جاري التحميل...*"),parse_mode=>markdown
          ytdl_data = ytdl.extract_info(url, download=True)
          audio_file = ytdl.prepare_filename(ytdl_data)
          thumb = wget.download(f"https://img.youtube.com/vi/{ytdl_data['id']}/hqdefault.jpg")
    except Exception as e:
       await client.send_message(chat_id=Sudo_id,text=e)
       return await callback_query.edit_message_text(e)
-   await callback_query.edit_message_text("🚀 يتم الرفع علي خوادم تلكرام ")
+   await callback_query.edit_message_text("*🚀 يتم الرفع علي خوادم تلكرام *"),parse_mode=>markdown
    await client.send_audio(
       callback_query.message.chat.id,
       audio=audio_file,
@@ -108,7 +108,7 @@ async def search(client, message):
             await message.reply_text("استخدم الامر هكذا ( بحث + الكلمه )")
             return
 
-        m = await message.reply_text("يتم البحث عن ( {message.text} )")
+        m = await message.reply_text("يتم البحث عن ( {query} )")
         results = YoutubeSearch(query, max_results=5).to_dict()
         i = 0
         text = ""
